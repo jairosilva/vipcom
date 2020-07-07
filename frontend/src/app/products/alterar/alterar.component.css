@@ -1,0 +1,22 @@
+div {
+  background-color: rgba(205, 217, 237, 0.5215686274509804);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.titulo {
+  color: white;
+  background-color: blueviolet;
+  padding: 15px;
+}
+
+mat-form-field {
+  width: 100%;;
+}

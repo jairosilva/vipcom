@@ -1,0 +1,88 @@
+<div style="min-width: 50vw;">
+
+  <div class="titulo">
+    <label>Update Product</label>
+  </div>
+
+    <p>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput value='{{ data.title }}'>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput value='{{ data.type }}'>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field style="width: 50%;">
+      <mat-label>Rating</mat-label>
+      <input matInput value='{{ data.rating }}'>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field style="width: 50%;">
+      <mat-label>Price</mat-label>
+      <!-- <input matInput type='text' value="{{ data.price }}" mask="separator" thousandSeparator="."/> -->
+      <input matInput type='text' value="{{ data.price }}"/>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field style="width: 50%;">
+      <mat-label>Created</mat-label>
+      <input matInput value="{{ data.created_at | date: 'dd/MM/yyyy' }}">
+    </mat-form-field>
+  </p>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="1" (click)="save(data)">Save</button>
+    <button mat-button (click)="close()" tabindex="-1">Cancel</button>
+  </div>
+
+</div>
+
+
+<!-- <div class="container">
+  <h3 mat-dialog-title>Novo Produto</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+     <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Descrição" [(ngModel)]="data.title" name="title" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Tipo" [(ngModel)]="data.type" name="type" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Avaliação" [(ngModel)]="data.rating" name="rating">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Preço (R$)" [(ngModel)]="data.price" name="price">
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="gravar(data)">Gravar</button>
+      <button mat-button (click)="sair()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div> -->

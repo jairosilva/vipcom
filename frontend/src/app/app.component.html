@@ -1,0 +1,20 @@
+
+<header>
+  <img id="logo" src="./assets/logo.png"/>
+</header>
+
+  <div class="titulo">
+    <label>Home</label>
+  </div>
+
+<div class="wrapper">
+  <div class="file-upload">
+    <input type="text" disabled value="" style="height: 40px; min-width: 400px;" value="Anexar Arquivo .json"/>
+    <button type="button" (click)="fileInput.click()" style="height: 40px; margin: 10px;">
+      <span>Enviar</span>
+      <input #fileInput type="file" style="display:none;" ng2FileSelect [uploader]="jsonUploader" accept=".json" (change)="fileChanged($event)"/>
+    </button>
+  </div>
+
+  <app-products></app-products>
+</div>
