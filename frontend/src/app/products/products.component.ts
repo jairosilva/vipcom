@@ -47,7 +47,11 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (data) => {
         this.dataSource = data;
-        this.notifyService.showSuccess("Os dados foram atualizados!", "Sucesso");
+
+        if (data.length > 0) {
+          this.notifyService.showSuccess("Os dados foram atualizados!", "Sucesso");
+        }
+
       },
       (error) => {
         console.log('Erro ao buscar os dados.');

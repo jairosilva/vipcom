@@ -30,29 +30,36 @@ router.post("/products/upload", upload.single("json"), function (req, res) {
     if (err) throw err;
     let products = JSON.parse(data);
 
-    products.forEach(function (table) {
-      var title = table.title;
-      var type = table.type;
-      var rating = table.rating;
-      var price = table.price;
+    var promessa = new Promise((resolve, reject) => {
+      products.forEach((table, index, array) => {
 
-      db.execute("SELECT id FROM products where title = ?", [title])
-        .then(([rows, fieldData]) => {
-          if (rows.length == 0) {
-            db.execute(
-              "INSERT INTO products (title, type, rating, price) VALUES (?, ?, ?, ?)",
-              [title, type, rating, price]
-            );
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        var title = table.title;
+        var type = table.type;
+        var rating = table.rating;
+        var price = table.price;
+
+        db.execute("SELECT id FROM products where title = ?", [title])
+          .then(([rows, fieldData]) => {
+            if (rows.length == 0) {
+              db.execute(
+                "INSERT INTO products (title, type, rating, price) VALUES (?, ?, ?, ?)",
+                [title, type, rating, price]
+              );
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        if (index === array.length - 1) resolve();
+      });
     });
 
-    res
-      .status(200)
-      .json({ sucesso: true, mensagem: "Produtos foram importados." });
+    promessa.then(() => {
+      res
+        .status(200)
+        .json({ sucesso: true, mensagem: "Produtos foram importados." });
+    });
   });
 });
 
